@@ -1,4 +1,4 @@
-# FAERY Sims: simulated robot optimization using Family Aware EvolutionaRY (FAERY) Algorithms
+# pyroFAERY: simulated robot optimization using Family Aware EvolutionaRY (FAERY) Algorithms and pyrosim
 
 Family Aware EvolutionaRY (FAERY) algorithms provide a method of optimizing phenotypic fitness through a genetic algorithm while maintaining diversity within the population.
 
