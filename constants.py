@@ -4,7 +4,7 @@ num_iterations = 10000
 
 sleep_time = 0
 
-num_generations = 15
+num_generations = 1
 
 motor_joint_range = .2
 
