@@ -59,6 +59,15 @@ pyroFAE2, like pyroFAE1 is a **gene averaging** algorithm using the same method 
 However, pyroFAE2 is a **full mating** algorithm.
 Therefore, in pyroFAE2, every individual in a generation is mated with every other individual in the generation, including itself.
 
+### Optimization algorithm 3: pyroFAE3
+
+pyroFAE3 is an algorithm derived from pyroFAE1. It is a partial mating algorithm; however, it uses a different method of combining parent genomes to produce offspring.
+
+pyroFAE3 uses a [beta distribution](https://en.wikipedia.org/wiki/Beta_distribution) with parameters `a=0.8, b=0.2` to obtain the weights of each parent's genes to be passed on. This has two effects.
+
+1. It results in child genomes that are not averages of parent genes values but are rather dominated by one parent's gene.
+2. It increases the weight of parent 1's genome, the parent who passes on their family name to the child, over the weight of parent 2's genome.
+
 ### Optimization results
 
 Running pyroFAE1 and pyroFAE2 with the specifications found [here](/constants.py) demonstrated that both algorithms were capable of optimizing a simulated robot to achieve a desired goal.

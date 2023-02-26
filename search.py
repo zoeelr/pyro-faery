@@ -1,7 +1,7 @@
 import argparse
-from ludofae1 import ludoFAE1
-from ludofae2 import ludoFAE2
-from ludofae3 import ludoFAE3
+from pyroFAE1 import pyroFAE1
+from pyroFAE2 import pyroFAE2
+from pyroFAE3 import pyroFAE3
 
 parser = argparse.ArgumentParser(
     prog = 'search.py',
@@ -11,11 +11,11 @@ parser.add_argument('-m', '--method', choices=['1', '2', '3'], default='1')
 args = parser.parse_args()
 
 if args.method == '1':
-    evolutionary_algorithm = ludoFAE1()
+    evolutionary_algorithm = pyroFAE1()
 elif args.method == '2':
-    evolutionary_algorithm = ludoFAE2()
+    evolutionary_algorithm = pyroFAE2()
 elif args.method == '3':
-    evolutionary_algorithm = ludoFAE3()
+    evolutionary_algorithm = pyroFAE3()
 else:
     exit()
 

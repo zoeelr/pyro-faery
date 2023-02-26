@@ -6,7 +6,7 @@ import merge_sort
 from solution import Solution
 import constants as Cnsts
 
-class ludoFAE3:
+class pyroFAE1:
     
     def __init__(self) -> None:
         os.system("rm ./data/robot/robot_fitness*.txt")
@@ -27,8 +27,6 @@ class ludoFAE3:
             self.next_available_id += 1
 
         self.genome_shape = self.parents["000000000000"].network_shape
-        
-        self.rng = np.random.default_rng()
 
     def evolve(self) -> None:
         self.evaluate(self.parents)
@@ -52,6 +50,7 @@ class ludoFAE3:
     
     def evolve_for_one_generation(self, generation):
         self.produce_children(generation)
+        self.mutate()
         self.evaluate(self.children)
         self.print()
         self.select(generation)
@@ -61,8 +60,7 @@ class ludoFAE3:
         for parent1 in self.parents:
             for child_num in range(self.number_of_children):
                 parent2 = random.choice(list(self.parents.keys()))
-
-                percent_parent1 = np.random.beta(a=0.8, b=0.2, size=self.genome_shape)
+                percent_parent1 = np.random.rand(*self.genome_shape)
                 percent_parent2 = 1 - percent_parent1
 
                 parent1_genome = self.parents[parent1].weights
@@ -72,14 +70,13 @@ class ludoFAE3:
 
                 child_genome = np.multiply(percent_parent1, parent1_genome) + np.multiply(percent_parent2, parent2_genome)
 
-                self.children[child_id] = Solution(child_id, self.mutate(child_genome))
+                self.children[child_id] = Solution(child_id, child_genome)
 
-    def mutate(self, child_genome) -> None:
-        mutation_on_off = self.rng.uniform(size=self.genome_shape) < Cnsts.mutation_rate
-        mutation_magnitude_multiplier = np.multiply(self.rng.choice([-1, 1]), self.rng.exponential(scale=Cnsts.mutation_magnitude, size=self.genome_shape))
-        mutations = np.multiply(mutation_on_off, mutation_magnitude_multiplier)
-        return child_genome + mutations
 
+    def mutate(self) -> None:
+        for child_key in self.children:
+            child = self.children[child_key]
+            child.mutate()
 
     def print(self) -> None:
         parent_fitnesses = []
